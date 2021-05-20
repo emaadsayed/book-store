@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/detail.css">
+    <title>LIL TALES</title>
+</head>
+
+<body>
+
+    <!--------------------- TOP-NAV ---------------------->
+    <header>
+        
+        <nav class="nav">
+            <h1>LIL<span>TALES</span></h1>
+            <i class="material-icons menu">menu</i>
+            <ul class="nav-list ">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/home/create">Create</a></li>
+                <li><a href="/home/dashboard">Dashboard</a></li>
+                <form action="/logout?_method=DELETE" method="POST">
+                  <li><button class="btn" type="submit">Log Out</button></li>
+                    </form>
+            </ul>
+        </nav>
+</header>
+
+    <!--**************************  ADD-BOOK **************************-->
+
+    <div class="container">
+
+        <p class="line">Author Details</p>
+        <form action="/home/dashboard/edit/submit?_method=PUT" method="POST">
+            <div class="card-body">
+
+                <div class="name-flex">
+                    <div class="event-name right">
+                        <p class="name">Full Name</p>
+                        <input class="input" type="text" placeholder="Full Name" id="name" name="name" required value="<%= user.name %>"></input>
+                    </div>
+        
+                    <div class="event-name left">
+                        <p class="name">Email</p>
+                        <input class="input" type="email" placeholder="Email" id="email" name="email" required value="<%= user.email %>"></input>
+                    </div>
+                </div>    
+                <div class="event-name">
+                    <br>
+                    <p class="name">About</p>
+                    <textarea type="text" class="i-name desc" id="description" placeholder="Enter Description of Book"
+                        name="description"><%= user.about %></textarea>
+                </div>
+
+                <div><input type="submit" value="Update" class="s-button"></div>
+            </div>
+        </form>
+    </div>
+
+
+
+
+</body>
+<script>
+    const burger = document.querySelector(".nav i");
+    const side = document.querySelector(".nav-list");
+
+    burger.addEventListener("click", (e) => {
+        side.classList.toggle("open");
+        e.preventDefault();
+    });
+</script>
+
+</html>

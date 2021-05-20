@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/show-book.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>LIL TALES</title>
+</head>
+
+<body>
+    <!--------------------- TOP-NAV ---------------------->
+    <header>
+
+        <nav class="nav">
+            <h1>LIL<span>TALES</span></h1>
+            <i class="material-icons menu">menu</i>
+            <ul class="nav-list ">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/home/create">Create</a></li>
+                <li><a href="/home/dashboard">Dashboard</a></li>
+                <form action="/logout?_method=DELETE" method="POST">
+                    <li><button class="btn" type="submit">Log Out</button></li>
+                    </form>
+            </ul>
+        </nav>
+    </header>
+
+    <!--------------------- BOOK ---------------------->
+    <div class="book">
+        <div class="container">
+            <div class="book-section">
+                <div class="b-right">
+                    <img class="b-img" src="<%= book.coverImagePath %>" alt="">
+                </div>
+                <div class="b-left">
+                    <h1 class="b-heading"><%= book.title %></h1>
+                    <p class="b-des"><%= book.description %></p>
+                    <% if(favStatus != true){ %>
+                    <a href="" onclick="favourite('<%= book._id %>')" class="btn read">Read Later</a>
+                    <%}%>
+                    <% if(book.paid == 0 || Status == true || uploaded == true){ %>
+                    <a href="read/<%= book._id %>" class="btn read">Read</a>
+                    <%}%>
+                    <% if(book.paid != 0 && Status == false && uploaded == false ){ %>
+                    <a href="" onclick="purchase('<%= book._id %>')" class="btn read">Pay &nbsp <%= book.paid %> $</a>
+                    <%}%>
+                        <div class="b-line"></div>
+                        <div class="info">
+                        <p>Author: &nbsp &nbsp &nbsp <span><%= book.author.name %></span></p>
+                    <p>Category: &nbsp<span><%= book.category %></span></p>
+                    <p>Language: <span><%= book.language %></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!--------------------- Author ---------------------->
+    <div class="author">
+        <div class="container">
+            <h1 class="a-heading">Meet The Author</h1>
+            <div class="author-section">
+                <div class="a-right">
+                    <img class="a-img" src="<%= book.author.coverImagePath %>" alt="">
+                </div>
+                <div class="a-left">
+                    <h3 class="a-name"><%= book.author.name %></h3>
+                    <p class="a-des"><%= book.author.about %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--------------------- SUGGESTION---------------------->
+
+    <div class="container">
+        <h3 class="line heading">Suggestion</h3>
+        <div class="cards">
+            <% suggestions.forEach(ele => { %>     
+                <div class="card">
+                    <a href="/home/<%=ele.id %>"><img src="<%= ele.coverImagePath %>" alt="photo" class="image-in"></a>
+                </div>
+                <% }) %>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="f-content">
+                <div class="f-card f-first">
+                    <h1>LIL<span>TALES</span></h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis ratione quibusdam voluptatibus perspiciatis assumenda earum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis ratione quibusdam voluptatibus perspiciatis assumenda earum.</p>
+                </div>
+                <div class="f-card"> 
+                    <h1>Address</h1>
+                    <p>Bouvet Island <br>
+                        Jeanetteside <br>
+                        53 Brannon Falls Suite 406</p>
+                </div>
+                <div class="f-card">
+                    <h1>Work inquiries</h1>
+                    <p>860-278-8915 <br>
+                        contact@liltales.com</p>
+                </div>
+            </div>
+            <p class="fbottom">Copyright ©2020 All rights reserved </p>
+        </div>
+    </footer>
+</body>
+<script>
+    const burger = document.querySelector(".nav i");
+    const side = document.querySelector(".nav-list");
+
+    burger.addEventListener("click", (e) => {
+        side.classList.toggle("open");
+        e.preventDefault();
+    });
+    
+    function purchase(id) {
+        let body = {
+            bookId: id
+        }
+        axios.post('/home/purchase', body, { timeout: 3000 }).then(res => {
+            if (res) {
+                console.log("success");
+            } else {
+                console.log("reject")
+            }
+        })
+    }
+
+    function favourite(id) {
+        let body = {
+            bookId: id
+        }
+        axios.post('/home/favourite', body, { timeout: 3000 }).then(res => {
+            if (res) {
+                console.log("success");
+            } else {
+                console.log("reject")
+            }
+        })
+    }
+</script>
+
+</html>

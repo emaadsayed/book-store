@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;0,700;0,900;1,500&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+body{
+  margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #12141d;
+    color: white;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+  a {
+    text-decoration: none;
+  }
+  
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2em;
+}
+
+span {
+  color: #E92020;
+}
+
+#message{
+  font-size: 0.7em;
+}
+/*----------------------- NAV-BAR -------------------------*/
+
+header{
+    background-color: #0c0e16;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  background-color: #0c0e16;
+  padding: 0 2em;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.nav h1 {
+  font-size: 2em;
+  font-weight: 600;
+  margin: 0;
+}
+
+.nav i {
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.nav-list {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 17em;
+  height: 100%;
+  background-color: #0c0e16;
+  color: white;
+  transform: translateX(-100%);
+  transition: transform 0.5s;
+  z-index: 1000;
+}
+
+.nav-list a {
+  color: white;
+  font-weight: 400;
+  font-size: 0.9em;
+  margin-left: 2em;
+  transition: all 0.3s;
+}
+
+.nav-list a:hover{
+  transition: all 0.3s;
+  color: #e92020;
+}
+.nav-list li {
+  padding: 1em 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.open {
+  transform: translateX(0);
+}
+
+.btn{
+    font-size: 0.9em;
+    color: white;
+    background-color: #e92020;
+    padding: 0.3em 2em;
+    border-radius: 20px;
+    display: inline-block;
+    border: none;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    margin-left: 2em;
+    transition: all 0.3s;
+  }
+
+  .btn:hover{
+    transition: all 0.3s;
+    background-color: white;
+    color: #e92020;
+  }
+
+/*----------------------- FORM -------------------------*/
+
+.form{
+    background-color: #0C0E16;
+    color: white;
+    padding: 2em;
+    text-align: center;
+    width: 18em;   
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+
+
+.title{
+    text-align: center;
+    margin-bottom: 0.5em;
+    font-weight: 300;
+    font-size: 2em;    
+    font-weight: 500;
+}
+
+.content div input{
+    width: 80%;
+    padding: 0.5em;
+    margin: 0.5em 0;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    background-color: white;
+    border-bottom: 1.5px solid black;
+}
+
+.input{
+    color: black;
+}
+
+
+button{
+    margin: 2em auto 2em;
+    padding: 0.5em 2em;
+    cursor: pointer;
+    color: white;
+    background-color: #E92020;
+    border: #E92020 2px solid;
+    border-radius: 20px;
+    transition: ease-in 0.35s;
+    font-family: 'poppins';
+}
+
+button:hover{
+
+    color: white;
+    border: #E92020 2px solid;
+    background-color: transparent;
+}
+
+a{
+    font-weight: 700;
+    color: #e92020;
+}
+
+.material-icons{
+  font-size: 4em;
+}
+
+.form i{
+    color: #e92020;
+}
+
+@media (min-width: 800px) {
+
+  
+    .nav-list {
+      position: inherit;
+      width: auto;
+      height: auto;
+      background-color: transparent;
+      color: white;
+      display: flex;
+      transform: translateX(0%);
+    }
+  
+    .nav i {
+      display: none;
+    }
+  
+    .nav-list li {
+      border-bottom: none;
+    }
+  }

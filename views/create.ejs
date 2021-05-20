@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <link rel="stylesheet" href="/css/create.css">
+      <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+    <script defer src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script defer src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
+    <script defer src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
+    <script defer src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <script defer src="/javascript/fileUpload.js"></script>
+      <title>LIL TALES</title>
+</head>
+<body>    
+
+           <!--------------------- TOP-NAV ---------------------->
+           <header>
+        
+            <nav class="nav">
+                <h1>LIL<span>TALES</span></h1>
+                <i class="material-icons menu">menu</i>
+                <ul class="nav-list ">
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/home/create">Create</a></li>
+                    <li><a href="/home/dashboard">Dashboard</a></li>
+                    <form action="/logout?_method=DELETE" method="POST">
+                        <li><button class="btn" type="submit">Log Out</button></li>
+                        </form>
+                </ul>
+            </nav>
+    </header>
+
+    <!--**************************  ADD-BOOK **************************-->
+
+   
+    <div class="container">
+        
+
+        <p class="line">Add Book</p>
+        <form action="/home/create" method="POST">
+    <div class="card-body">
+
+        <div class="name-flex">
+            <div class="event-name right">
+                <p class="name">Book Title</p>
+                <input type="text" class="i-name" placeholder="Enter Title of Book" id="title" name="title" required value="">
+            </div>
+
+            <div class="event-name left">
+                <p class="name">Language</p>
+                <input type="text" class="i-name" placeholder="Enter Language of Book" id="language"  name="language" required value="">
+            </div>
+
+            <div class="event-name third">
+              <p class="name">Category</p>
+              <select name="category" id="category" class="i-name" >
+                <option value="Adventure">Adventure</option>
+                <option value="Fanfiction">Fanfiction</option>
+                <option value="Horror">Horror</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Romance">Romance</option>
+              </select>
+          </div>
+
+          <div class="event-name left">
+            <p class="name">Price</p>
+            <input type="text" class="i-name" placeholder="Enter Price of Book" id="paid"  name="paid" required value="">
+        </div>
+        </div>    
+
+        <div class="event-name">
+            <p class="name">Description</p>
+            <textarea type="text" class="i-name desc"  id="description"  placeholder="Enter Description of Book"name="description" ></textarea>
+        </div>
+
+        
+        <div class="event-name">
+            <p class="name">Content</p>
+            <textarea type="text" class="i-name desc"  id="content"  placeholder="Enter Content of Book"name="content" ></textarea>
+        </div>
+
+        <div>
+            <label>Book Cover</label>
+            <input type="file" name="cover" class="filepond">
+        </div>
+   
+
+        <div><input type="submit" value="Submit" class="s-button"></div>
+
+    </div>
+</form>
+
+
+             </div>
+
+
+
+    
+</body>
+<script>
+    const burger = document.querySelector(".nav i");
+const side = document.querySelector(".nav-list");
+
+burger.addEventListener("click", (e) => {
+  side.classList.toggle("open");
+  e.preventDefault();
+});
+</script>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIL TALES</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+        <!--------------------- TOP-NAV ---------------------->
+        <header>
+        
+            <nav class="nav">
+                <h1>LIL<span>TALES</span></h1>
+                <i class="material-icons menu">menu</i>
+                <ul class="nav-list ">
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/home/create">Create</a></li>
+                    <li><a href="/home/dashboard">Dashboard</a></li>
+                    <form action="/logout?_method=DELETE" method="POST">
+                      <li><button class="btn" type="submit">Log Out</button></li>
+                        </form>
+                </ul>
+            </nav>
+    </header>
+    
+       <!--------------------- TABS ---------------------->
+
+    <main class="main">
+        <div class="container">
+            <h1 id="dash" >Dashboard</h1>
+          <div class="tab">
+            <div class="tab-menu">
+              <button class="tab-menu-link active" data-content="first">
+                <h4 data-title="first">My Books</h4>
+              </button>
+              <button class="tab-menu-link" data-content="second">
+                <h4 data-title="second">Profile</h4>
+              </button>
+              <button class="tab-menu-link" data-content="third">
+                <h4 data-title="second">Read Later</h4>
+              </button>
+           
+            </div>
+            <div class="tab-bar">
+              <div class="tab-bar-content active" id="first">
+                    <!--------------------- CARDS---------------------->
+                    <div class="container">
+
+                      <% if(book != "") { %>
+                        <div class="top">
+                        <h3 class="line heading">Uploaded Book</h3>
+                    </div>
+                        <div class="cards">
+                                <% book.forEach(book => { %>
+                                <div class="card">
+                                  <a href="/home/<%=book.id %>"><img src="<%= book.coverImagePath %>" alt="photo" class="image-in"></a>
+                                  <form action="/home/delete/<%= book.id  %>?_method=DELETE" method="POST" >
+                                    <button type="submit" class="a"> <i class="material-icons">delete</i></button>
+                                  </form>
+                                </div>
+                                <% }) %>
+                        </div>
+                        <% } %>
+
+                        <% if(purchase != "") { %>
+                        <div class="top">
+                            <h3 class="line heading">Purchased Book</h3>
+                        </div>
+                            <div class="cards">
+                              <% purchase.forEach(purchase => { %>
+                                <div class="card">
+                                  <a href="/home/<%=purchase.id %>"><img src="<%= purchase.coverImagePath %>" alt="photo" class="image-in"></a>
+                                </div>
+                                <% }) %>
+                            </div>
+                            <% } %>
+                
+                        </div>
+              </div>
+
+
+              <div class="tab-bar-content" id="second">
+      <!--------------------- Author ---------------------->
+      <div class="author">
+        <div class="container">
+          <h1 class="a-heading">About</h1>
+            <div class="author-section">
+              <div class="a-right">
+                  <img class="a-img" src="<%= user.coverImagePath %>" alt="">
+              </div>
+                <div class="a-left">
+                    <h3 class="a-name"><%= user.name %></h3>
+                    <p class="a-des"> <%= user.about %></p>
+                </div>
+            </div>
+<div class="edit">
+            <a href="/home/dashboard/edit" class="btn">Edit Profile</a>
+        </div>
+        </div>
+    </div>
+              </div>
+
+                 <!--------------------- Favourite ---------------------->
+                 <div class="tab-bar-content" id="third">
+                  <div class="container">
+                    <% if(favourite != "") { %>
+                    <div class="top">
+                      <h3 class="line heading">Favourite Book</h3>
+                  </div>
+                    <div class="cards">
+                      <% favourite.forEach(favourite => { %>
+                      <div class="card">
+                        <a href="/home/<%=favourite.id %>"><img src="<%= favourite.coverImagePath %>" alt="photo" class="image-in"></a>
+                      </div>
+                      <% }) %>
+                 
+              </div>
+              <% } %>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer>
+        <div class="container">
+            <div class="f-content">
+                <div class="f-card f-first">
+                    <h1>LIL<span>TALES</span></h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis ratione quibusdam voluptatibus perspiciatis assumenda earum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis ratione quibusdam voluptatibus perspiciatis assumenda earum.</p>
+                </div>
+                <div class="f-card"> 
+                    <h1>Address</h1>
+                    <p>Bouvet Island <br>
+                        Jeanetteside <br>
+                        53 Brannon Falls Suite 406</p>
+                </div>
+                <div class="f-card">
+                    <h1>Work inquiries</h1>
+                    <p>860-278-8915 <br>
+                        contact@liltales.com</p>
+                </div>
+            </div>
+            <p class="fbottom">Copyright ©2020 All rights reserved </p>
+        </div>
+    </footer>
+</body>
+<script>
+    // Tabs Action
+const tabLink = document.querySelectorAll(".tab-menu-link");
+const tabContent = document.querySelectorAll(".tab-bar-content");
+
+tabLink.forEach((el) => {
+  el.addEventListener("click", activeTab);
+});
+
+function activeTab(el) {
+  const btnTarget = el.currentTarget;
+  const content = btnTarget.dataset.content;
+
+  tabContent.forEach((el) => {
+    el.classList.remove("active");
+  });
+
+  tabLink.forEach((el) => {
+    el.classList.remove("active");
+  });
+
+  document.querySelector("#" + content).classList.add("active");
+  btnTarget.classList.add("active");
+}
+
+
+const burger = document.querySelector(".nav i");
+const side = document.querySelector(".nav-list");
+
+burger.addEventListener("click", (e) => {
+  side.classList.toggle("open");
+  e.preventDefault();
+});
+
+</script>
+</html>

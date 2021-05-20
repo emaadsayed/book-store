@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <link rel="stylesheet" href="/css/register.css">
+      <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+      <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+      <script defer src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+      <script defer src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
+      <script defer src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
+      <script defer src="https://unpkg.com/filepond/dist/filepond.js"></script>
+      <script defer src="/javascript/fileUpload.js"></script>
+      <title>LIL TALES</title>
+</head>
+<body>    
+
+           <!--------------------- TOP-NAV ---------------------->
+           <header>
+        
+            <nav class="nav">
+                <h1>LIL<span>TALES</span></h1>
+                <i class="material-icons menu">menu</i>
+                <ul class="nav-list ">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/register">Sign up</a></li>
+                    <li><a href="/login" class="btn">Sign in</a></li>
+                </ul>
+            </nav>
+    </header>
+
+    <!--**************************  Signup-Form  **************************-->
+
+ 
+    <form action="/register/submit" method="POST">
+    <div class="form">
+        <h3 class="title">Let’s Get Started</h3>
+        <i class="material-icons">
+            account_circle
+        </i>
+        <div class="content">
+            <div>
+                <input class="input" type="text" placeholder="Full Name" id="name" name="name" required></input>
+             
+            </div>
+            <div>
+                <input class="input" type="email" placeholder="Email" id="email" name="email" required></input>
+         
+            </div>
+            <div>
+                <input class="input" type="password" placeholder="Password" id="password" name="password" required></input>
+            
+            </div>
+
+            
+            <div class="event-name">
+                <br>
+                    <p class="name">About</p>
+                    <textarea type="text" class="i-name desc" id="description" placeholder="About"
+                        name="description"></textarea>
+                </div>
+
+                <div>
+                    <p class="name">Profile Pic</p>
+                    <br>
+                    <input type="file" name="cover" class="filepond">
+                </div>
+        <div><button type="submit" class="button">Next</button></div>
+        <p class="aha">Already have an account? <span><a href="/login"> Sign In</a></span></p>
+        </div>
+    </div>
+
+</form>
+
+
+    
+</body>
+
+<script>
+    const burger = document.querySelector(".nav i");
+const side = document.querySelector(".nav-list");
+
+burger.addEventListener("click", (e) => {
+  side.classList.toggle("open");
+  e.preventDefault();
+});
+</script>
+
+</html>
